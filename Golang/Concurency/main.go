@@ -1,26 +1,20 @@
 package main
-
 import (
 	"fmt"
 )
 
-func SayHello() {
-	fmt.Println("Hello from Go routine!")
-}
+func main(){
+	fmt.Println("=== Complete Go Goroutines Tutorial ===")
+	fmt.Println("From Basics to Advanced Patterns")
 
-func Greet() {
-	fmt.Println("Hello world")
-}
-
-func Counter() {
-	for i := 0; i < 10; i++ {
-		fmt.Println(i)
-	}
-}
-
-func main() {
-	go SayHello()
-	 Counter()
+	// ================================================================
+	// PART 1: INTRODUCTION TO GOROUTINES
+	// ================================================================
+	fmt.Println("🟢 PART 1: INTRODUCTION TO GOROUTINES")
 	
-
+	fmt.Println("\n1.1 What are Goroutines?")
+	fmt.Println("• Lightweight threads managed by the Go runtime")
+	fmt.Println("• Much cheaper than OS threads (can have millions)")
+	fmt.Println("• Communicate via channels (share memory by communicating)")
+	fmt.Println("• Created with the 'go' keyword before a function call")
 }
