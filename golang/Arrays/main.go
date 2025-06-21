@@ -22,4 +22,10 @@ func main(){
 	mixed := [4] interface{}{"apple",5,true,3.14}
 
 	fmt.Println("mixed array", mixed)
+
+	// ==============================================
+	// 2. ACCESSING AND MODIFYING ARRAY ELEMENTS
+	// ==============================================
+	colors := [3] string{"red","orange","blue"}
+	fmt.Println("first color", colors[0])
 }
