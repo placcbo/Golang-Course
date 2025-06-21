@@ -2,30 +2,23 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"sort"
+	"strings"
 )
 
-
-
-func main(){
-
-// ==============================================
+func main() {
+	// ==============================================
 	// 1. BASIC MAP DECLARATION
 	// ==============================================
 
-	// Declare a nil map (zero-valued, cannot be used yet)
 	var nilMap map[string]int
 	fmt.Println("\nNil map:", nilMap, "Length:", len(nilMap))
 
-	// Initialize a map with make()
-
-	ages := make(map[string] int)
-
-	ages["kevin"] = 20
-	ages["kamau"] = 30
+	ages := make(map[string]int)
+	ages["Alice"] = 25
+	ages["Bob"] = 30
 	fmt.Println("Map with make():", ages, "Length:", len(ages))
-
-	// Initialize a map with values
 
 	salaries := map[string]float64{
 		"Alice": 75000.50,
@@ -34,8 +27,6 @@ func main(){
 	}
 	fmt.Println("Initialized map:", salaries, "Length:", len(salaries))
 
-	
-	// Mixed value types using interface{}
 	person := map[string]interface{}{
 		"name":    "John",
 		"age":     30,
@@ -44,31 +35,25 @@ func main(){
 	}
 	fmt.Println("Mixed-type map:", person)
 
-
 	// ==============================================
 	// 2. MAP OPERATIONS
 	// ==============================================
 
-	// Accessing elements
 	fmt.Println("\nAlice's age:", ages["Alice"])
 	fmt.Println("Bob's salary:", salaries["Bob"])
 
-	// Checking for existence
 	if age, exists := ages["Charlie"]; exists {
 		fmt.Println("Charlie's age:", age)
 	} else {
 		fmt.Println("Charlie not found in ages map")
 	}
 
-	// Modifying elements
 	salaries["Alice"] = 80000.00
 	fmt.Println("Updated Alice's salary:", salaries["Alice"])
 
-	// Adding new elements
 	ages["Charlie"] = 28
 	fmt.Println("Added Charlie:", ages)
 
-	// Deleting elements
 	delete(ages, "Bob")
 	fmt.Println("After deleting Bob:", ages)
 
@@ -76,29 +61,22 @@ func main(){
 	// 3. MAP PROPERTIES AND BEHAVIOR
 	// ==============================================
 
-	// Maps are reference types
 	refSalaries := salaries
 	refSalaries["Alice"] = 85000.00
 	fmt.Println("\nOriginal salaries:", salaries)
 	fmt.Println("Reference salaries:", refSalaries)
 
-	// Zero value for missing keys
 	fmt.Println("Zero value for missing key:", ages["David"])
-
-	// Maps are not comparable (can't use ==)
-	// fmt.Println(salaries == refSalaries) // Compile error!
 
 	// ==============================================
 	// 4. ITERATING OVER MAPS
 	// ==============================================
 
-	// Random iteration order
 	fmt.Println("\nIterating over salaries (random order):")
 	for name, salary := range salaries {
 		fmt.Printf("%s: $%.2f\n", name, salary)
 	}
 
-	// Sorted iteration
 	fmt.Println("\nIterating over salaries (sorted order):")
 	keys := make([]string, 0, len(salaries))
 	for k := range salaries {
@@ -113,7 +91,6 @@ func main(){
 	// 5. MAPS WITH COMPLEX VALUES
 	// ==============================================
 
-	// Map of slices
 	departments := map[string][]string{
 		"Engineering": {"Alice", "Bob", "Charlie"},
 		"Marketing":   {"David", "Eve"},
@@ -124,8 +101,6 @@ func main(){
 		fmt.Printf("%s: %v\n", dept, employees)
 	}
 
-
-	// Map of maps
 	graph := map[string]map[string]float64{
 		"A": {"B": 5.0, "C": 2.0},
 		"B": {"A": 5.0, "D": 1.0},
@@ -137,5 +112,40 @@ func main(){
 		fmt.Printf("%s -> %v\n", node, edges)
 	}
 
+	// ==============================================
+	// 6. PRACTICAL MAP USAGE
+	// ==============================================
 
+	text := "hello world hello go world go hello"
+	words := make(map[string]int)
+	for _, word := range strings.Fields(text) {
+		words[word]++
+	}
+	fmt.Println("\nWord frequencies:")
+	for word, count := range words {
+		fmt.Printf("%s: %d\n", word, count)
+	}
+
+	config := map[string]interface{}{
+		"debug":      true,
+		"logLevel":   "info",
+		"maxRetries": 3,
+		"timeout":    30.5,
+		"allowedIPs": []string{"192.168.1.1", "10.0.0.1"},
+	}
+	fmt.Println("\nConfiguration:")
+	for key, value := range config {
+		fmt.Printf("%s: %v (%T)\n", key, value, value)
+	}
+
+	vectors := map[string][]float64{
+		"v1": {1.2, 3.4},
+		"v2": {5.6, 7.8},
+		"v3": {9.0, 1.2},
+	}
+	fmt.Println("\nVector magnitudes:")
+	for name, v := range vectors {
+		mag := math.Sqrt(v[0]*v[0] + v[1]*v[1])
+		fmt.Printf("%s: %v → magnitude = %.2f\n", name, v, mag)
+	}
 }
