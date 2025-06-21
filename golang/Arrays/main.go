@@ -27,5 +27,6 @@ func main(){
 	// 2. ACCESSING AND MODIFYING ARRAY ELEMENTS
 	// ==============================================
 	colors := [3] string{"red","orange","blue"}
-	fmt.Println("first color", colors[0])
+	fmt.Println("\nfirst color", colors[0])
+	fmt.Println("Last color", colors[len(colors) - 1])
 }
