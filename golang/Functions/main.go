@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+	"math"
+)
 
 	// 1. SIMPLE FUNCTION
 // This is the most basic function - no parameters, no return value
@@ -55,6 +59,36 @@ func greet() {
 		return total / float64(len(numbers))
 	}
 
+	// 10. CLOSURES
+	// Functions that remember values from their outer scope
+	func makeCounter() func() int {
+		count := 0
+		return func() int {
+			count++
+			return count
+		}
+	}
+
+	// 11. RECURSION
+	// Functions that call themselves
+	func factorial(n int) int {
+		if n == 0 {
+			return 1
+		}
+		return n * factorial(n-1)
+	}
+
+	// 12. PRACTICAL EXAMPLE: PALINDROME CHECKER
+	func isPalindrome(s string) bool {
+		s = strings.ToLower(s)
+		for i := 0; i < len(s)/2; i++ {
+			if s[i] != s[len(s)-1-i] {
+				return false
+			}
+		}
+		return true
+	}
+
 
 func main(){
 // Calling our simple function
@@ -102,6 +136,32 @@ func main(){
 	func() {
 		fmt.Println("I'm running immediately!")
 	}() // Prints: I'm running immediately!
+
+
+	counter := makeCounter()
+	fmt.Println(counter()) // Prints: 1
+	fmt.Println(counter()) // Prints: 2
+	fmt.Println(counter()) // Prints: 3
+
+	
+	fmt.Println("Factorial of 5:", factorial(5)) // Prints: Factorial of 5: 120
+
+	fmt.Println("Is 'madam' a palindrome?", isPalindrome("madam"))   // Prints: true
+	fmt.Println("Is 'golang' a palindrome?", isPalindrome("golang")) // Prints: false
+
+
+
+	// 13. PRACTICAL EXAMPLE: CIRCLE CALCULATIONS
+	  circleStats :=   func (radius float64) (area float64, circumference float64) {
+		area = math.Pi * radius * radius
+		circumference = 2 * math.Pi * radius
+		return
+	}
+	
+	r := 5.0
+	area, circ := circleStats(r)
+	fmt.Printf("Circle with radius %.1f: Area=%.2f, Circumference=%.2f\n",
+		r, area, circ) // Prints calculated values
 
 
 }
