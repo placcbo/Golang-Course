@@ -48,4 +48,5 @@ func main() {
     y := 3.5       // float64
     z := "GoLang!" // string
     fmt.Println(x, y, z)
+	fmt.Println(true && true || false)
 }
