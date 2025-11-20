@@ -3,14 +3,10 @@ package main
 import "fmt"
 
 func main(){
-sendsSoFar := 430
-const sendsToAdd = 25
-sendsSoFar = incrementSends(sendsSoFar, sendsToAdd)
-fmt.Println("You've send", sendsSoFar, "messages")
-}
+	fruits := [] int {2,4,6,8,10}
+	for i, fruit := range fruits{
+		fmt.Println(i, fruit * fruit)
 
-func incrementSends(sendsSoFar, sendsToAdd int) int{
-sendsSoFar = sendsSoFar + sendsToAdd
-return sendsSoFar
+	}
 
 }
