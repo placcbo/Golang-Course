@@ -1,12 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-func main(){
-	fruits := [] int {2,4,6,8,10}
-	for i, fruit := range fruits{
-		fmt.Println(i, fruit * fruit)
+)
 
+	type car struct{
+		make string
+		model string
+		tyre wheel
 	}
 
+	type wheel struct{
+		radius int
+		material string
+	}
+func main(){
+	toyota := car{
+		make: "toyota",
+		model: "toyota probox",
+		tyre: wheel{
+			radius:20,
+			material:"steel",
+
+		},
+	}
+
+	make := toyota.make
+	material := toyota.tyre.material
+	fmt.Println(make)
+	fmt.Println(material)
+
 }
+
+
